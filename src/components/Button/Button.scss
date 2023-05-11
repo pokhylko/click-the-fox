@@ -1,0 +1,18 @@
+.button {
+  padding: 15px 50px;
+  text-transform: uppercase;
+  border: 1px solid #F05E16;
+  border-radius: 5px;
+  background: #FFB347;
+  color: #FFF;
+  transition: 0.5s ease;
+
+  &:hover {
+    background: #F05E16;
+  }
+
+  &:disabled {
+    background: transparent;
+    color: #000;
+  }
+}
