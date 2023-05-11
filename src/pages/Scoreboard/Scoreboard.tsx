@@ -32,13 +32,15 @@ export const Scoreboard: FC<Props> = ({ name, score }) => {
     rating.push({ name, date, score })
   }
 
-  const newRating = rating.sort((a, b) => b.score - a.score)
+  let newRating = rating.sort((a, b) => b.score - a.score)
 
   if (newRating.length > MAX_LINES) {
     newRating.length = MAX_LINES
   }
 
   localStorage.setItem('score', JSON.stringify(newRating))
+
+  newRating = [{"name":"Anatolii Pokhylko","date":"01 May 2023","score":20},{"name":"Helen Robbins","date":"23 Mar 2023","score":15},{"name":"Michael Nelson","date":"11 Jul 2022","score":10},{"name":"Verlie Lobdell","date":"20 Jan 2023","score":5},{"name":"Pauline Craft","date":"11 May 2023","score":1}]
 
   return (
     <div className="scoreboard">
