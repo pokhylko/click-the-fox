@@ -68,14 +68,17 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/pokhylko/click-the-fox.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    yarn install
+   ```
+3. Start the project
+   ```sh
+   yarn start
    ```
 
 <!-- USAGE EXAMPLES -->
