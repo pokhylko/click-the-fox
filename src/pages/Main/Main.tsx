@@ -34,6 +34,7 @@ export const Main: FC<Props> = ({ score, setScore }) => {
   const [step, setStep] = useState<number>(0)
   const [counter, setCounter] = useState<number>(30)
   const [images, setImages] = useState<Animal[]>([])
+  const [nextImages, setNextImages] = useState<Animal[]>([])
   const [loading, setLoading] = useState(true)
   const loadingCounter: MutableRefObject<number> = useRef(0)
   let timer: NodeJS.Timeout
@@ -68,7 +69,7 @@ export const Main: FC<Props> = ({ score, setScore }) => {
     }
   }
 
-  const getAnimals = () => {
+  const getAnimals = (saveImages: typeof setImages) => {
     const animals = []
 
     for (let i = 0; i < 8; i++) {
@@ -80,7 +81,7 @@ export const Main: FC<Props> = ({ score, setScore }) => {
     Promise.all(animals).then(response => {
       const shaftedAnimals = response.sort(() => 0.5 - Math.random())
 
-      return setImages(shaftedAnimals)
+      return saveImages(shaftedAnimals)
     })
   }
 
@@ -106,9 +107,27 @@ export const Main: FC<Props> = ({ score, setScore }) => {
   useEffect(() => {
     loadingCounter.current = 0
 
-    getAnimals()
+    if (step !== 0) {
+      setImages(nextImages)
+    } else {
+      getAnimals(setImages)
+    }
+
+    getAnimals(setNextImages)
+
     setLoading(true)
   }, [step])
+
+  useEffect(() => {
+    setScore(0)
+  }, [])
+
+  useEffect(() => {
+    nextImages.forEach(picture => {
+      const img = new Image()
+      img.src = picture.image
+    })
+  }, [nextImages])
 
   useEffect(() => {
     if (loading) {

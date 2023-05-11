@@ -12,16 +12,25 @@
     font-size: 30px;
   }
 
+  &__loader {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    font-size: 20px;
+  }
+
   &__animals {
     display: grid;
-    grid-template-rows: 200px 200px 200px;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: repeat(3, 150px);
+    grid-template-columns: repeat(3, 150px);
+    flex: 1;
+    align-content: center;
     gap: 10px;
   }
 
   &__image {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
   }
 }

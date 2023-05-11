@@ -1,8 +1,9 @@
 import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { Button } from '../../components/Button'
 
 import './Scoreboard.scss'
-import { Button } from '../../components/Button'
-import { useNavigate } from 'react-router-dom'
 
 type Props = {
   name: string
@@ -27,7 +28,9 @@ export const Scoreboard: FC<Props> = ({ name, score }) => {
   const saved = localStorage.getItem('score') || '[]'
   const rating: Rating[] = JSON.parse(saved)
 
-  rating.push({ name, date, score })
+  if (name) {
+    rating.push({ name, date, score })
+  }
 
   const newRating = rating.sort((a, b) => b.score - a.score)
 
@@ -57,8 +60,12 @@ export const Scoreboard: FC<Props> = ({ name, score }) => {
                 {index + 1}
               </td>
               <td className="scoreboard__table-cell">{rating.name}</td>
-              <td className="scoreboard__table-cell">{rating.date}</td>
-              <td className="scoreboard__table-cell">{rating.score}</td>
+              <td className="scoreboard__table-cell scoreboard__table-cell--center">
+                {rating.date}
+              </td>
+              <td className="scoreboard__table-cell scoreboard__table-cell--right">
+                {rating.score}
+              </td>
             </tr>
           ))}
         </tbody>

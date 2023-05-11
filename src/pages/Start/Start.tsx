@@ -35,8 +35,6 @@ export const Start: FC<Props> = ({ name, setName }) => {
 
   return (
     <div className="start">
-      <h1>Click the Fox! Game</h1>
-
       {isNameEntered ? (
         <div className="start__name" onClick={() => setIsNameEntered(false)}>
           Hello {name}

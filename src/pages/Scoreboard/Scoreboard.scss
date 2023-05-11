@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   max-width: 500px;
   width: 100%;
+  flex: 1;
 
   &__table {
     border-collapse: collapse;
@@ -13,6 +15,8 @@
   }
 
   &__table-head {
+    color: #FFF;
+    font-weight: 700;
     border-bottom: 3px solid #FFF;
     background-color: #969696;
   }
@@ -26,8 +30,18 @@
     padding: 5px 10px;
 
     &.scoreboard__table-cell--ranked {
+      color: #FFF;
+      font-weight: 700;
       background-color: #969696;
     }
+  }
+
+  &__table-cell--center {
+    text-align: center;
+  }
+
+  &__table-cell--right {
+    text-align: right;
   }
 
   &__buttons {
