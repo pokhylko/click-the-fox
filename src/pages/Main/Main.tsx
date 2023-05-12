@@ -31,13 +31,18 @@ type Animal = {
 
 export const Main: FC<Props> = ({ score, setScore }) => {
   const navigate = useNavigate()
-  const [step, setStep] = useState<number>(0)
   const [counter, setCounter] = useState<number>(30)
   const [images, setImages] = useState<Animal[]>([])
   const [nextImages, setNextImages] = useState<Animal[]>([])
   const [loading, setLoading] = useState(true)
   const loadingCounter: MutableRefObject<number> = useRef(0)
   let timer: NodeJS.Timeout
+
+  const loadAnimals = () => {
+    setImages(nextImages)
+    setNextImages([])
+    getAnimals(setNextImages)
+  }
 
   const handleSelectedAnimal = (type: AnimalType) => {
     if (type === 'fox') {
@@ -46,7 +51,7 @@ export const Main: FC<Props> = ({ score, setScore }) => {
       setScore(score - 1)
     }
 
-    setStep(step + 1)
+    loadAnimals()
   }
 
   const getDog = async (): Promise<Animal> => {
@@ -69,7 +74,7 @@ export const Main: FC<Props> = ({ score, setScore }) => {
     }
   }
 
-  const getAnimals = (saveImages: typeof setImages) => {
+  const getAnimals = (saveImages: Dispatch<SetStateAction<Animal[]>>) => {
     const animals = []
 
     for (let i = 0; i < 8; i++) {
@@ -105,22 +110,15 @@ export const Main: FC<Props> = ({ score, setScore }) => {
   }
 
   useEffect(() => {
-    loadingCounter.current = 0
-
-    if (step !== 0) {
-      setImages(nextImages)
-    } else {
-      getAnimals(setImages)
-    }
-
+    setScore(0)
+    getAnimals(setImages)
     getAnimals(setNextImages)
-
-    setLoading(true)
-  }, [step])
+  }, [])
 
   useEffect(() => {
-    setScore(0)
-  }, [])
+    loadingCounter.current = 0
+    setLoading(true)
+  }, [images])
 
   useEffect(() => {
     nextImages.forEach(picture => {
@@ -158,11 +156,11 @@ export const Main: FC<Props> = ({ score, setScore }) => {
         className="main__animals"
         style={{ display: loading ? 'none' : 'grid' }}
       >
-        {images.map(({ image, type }) => (
+        {images.map(({ image, type }, index) => (
           <img
             className="main__image"
             onClick={() => handleSelectedAnimal(type)}
-            key={image}
+            key={`${image}+${index}`}
             src={image}
             alt={type}
             onLoad={imageLoaded}
