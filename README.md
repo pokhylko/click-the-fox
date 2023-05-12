@@ -48,8 +48,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Click the fox Screen Shot][images/screenshot.png]
-
+![Click the fox Screen Shot][product-screenshot]
 
 ### Built With
 
@@ -86,15 +85,15 @@ To get a local copy up and running follow these simple example steps.
 
 1. Enter your name and start the game
 
-<img src="images/start.png" alt="Logo">
+<img src="images/start.png" alt="start">
 
 2. Find the fox and click on it. Do not forget there are a lot of dogs around
 
-<img src="images/screenshot.png" alt="Logo">
+<img src="images/main.png" alt="main">
 
 3. Look for your result in the table. I am sure it is up there somewhere.
 
-<img src="images/result.png" alt="Logo">
+<img src="images/result.png" alt="scoreboard">
 
 4. Try to improve it. Good luck!
 
@@ -125,5 +124,5 @@ Anatolii Pokhylko - pokhylko@gmail.com
 Project Link: [https://pokhylko.github.io/click-the-fox](https://pokhylko.github.io/click-the-fox)
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/preview.gif
 
