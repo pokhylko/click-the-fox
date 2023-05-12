@@ -1,5 +1,6 @@
 {
   "name": "click-the-fox",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -28,7 +29,8 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts,.tsx .",
-    "format": "prettier --config .prettierrc 'src/**/*.tsx' --write"
+    "format": "prettier --config .prettierrc 'src/**/*.tsx' --write",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
